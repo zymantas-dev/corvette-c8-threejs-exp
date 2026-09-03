@@ -1,0 +1,129 @@
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../static/fonts/Ubuntu/Ubuntu-Bold.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  color: #f4f7f7;
+  background: #03070d;
+  font-family: "Ubuntu", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; min-width: 320px; min-height: 100%; }
+
+body { overflow: hidden; }
+
+button, a { font: inherit; }
+
+.experience { min-height: 100dvh; overflow: hidden; position: relative; background: #03070d; }
+
+.modern-webgl { display: block; height: 100dvh; inset: 0; position: absolute; width: 100%; }
+
+.loader {
+  align-items: center;
+  background: #03070d;
+  color: #dce9ec;
+  display: flex;
+  font-size: 10px;
+  justify-content: center;
+  letter-spacing: .18em;
+  min-height: 100dvh;
+  position: fixed;
+  text-transform: uppercase;
+  transition: opacity .5s ease, visibility .5s ease;
+  width: 100%;
+  z-index: 10;
+}
+
+.loader::after {
+  animation: loader-pulse 1.2s ease-in-out infinite;
+  background: #67d8ff;
+  border-radius: 50%;
+  content: "";
+  height: 5px;
+  margin-left: 12px;
+  width: 5px;
+}
+
+.loader.is-hidden { opacity: 0; pointer-events: none; visibility: hidden; }
+
+.topbar, .hero-copy, .drive-control, .paint-control, .model-credit { position: absolute; z-index: 1; }
+
+.topbar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: clamp(22px, 4vw, 64px);
+  right: clamp(22px, 4vw, 64px);
+  top: clamp(22px, 3vw, 44px);
+}
+
+.wordmark { color: inherit; font-size: 12px; letter-spacing: .1em; text-decoration: none; }
+.wordmark span { color: #67d8ff; padding: 0 5px; }
+.topbar p, .kicker, .drive-control p, .paint-control p, .model-credit { font-size: 9px; letter-spacing: .15em; text-transform: uppercase; }
+.topbar p { color: rgba(232, 244, 246, .6); margin: 0; }
+
+.hero-copy { left: clamp(22px, 7vw, 114px); top: 23%; }
+.kicker { color: #67d8ff; margin: 0 0 16px; }
+h1 { font-size: clamp(44px, 5.6vw, 92px); letter-spacing: -.07em; line-height: .88; margin: 0; max-width: 8ch; text-wrap: balance; }
+.intro { color: rgba(233, 241, 244, .73); font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; margin: 24px 0 20px; max-width: 210px; }
+
+.text-cta {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(103, 216, 255, .6);
+  color: #f4f7f7;
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: .1em;
+  padding: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.text-cta span { color: #67d8ff; display: inline-block; font-size: 14px; margin-left: 8px; transition: transform .2s ease; }
+.text-cta:hover span, .text-cta:focus-visible span { transform: rotate(90deg); }
+.text-cta:focus-visible, .speed-button:focus-visible, .paint-swatch:focus-visible { outline: 2px solid #67d8ff; outline-offset: 5px; }
+
+.drive-control { bottom: clamp(66px, 8vw, 110px); left: clamp(22px, 4vw, 64px); }
+.drive-control p { color: rgba(232, 244, 246, .6); margin: 0 0 11px; }
+.speed-buttons { display: flex; }
+.speed-button { background: rgba(5, 15, 27, .62); border: 1px solid rgba(130, 190, 211, .25); color: rgba(232, 244, 246, .62); cursor: pointer; font-size: 9px; letter-spacing: .1em; padding: 9px 10px; text-transform: uppercase; }
+.speed-button + .speed-button { border-left: 0; }
+.speed-button.is-active { background: rgba(103, 216, 255, .14); color: #f4f7f7; }
+.speed-button:hover { color: #f4f7f7; }
+
+.paint-control { bottom: clamp(26px, 5vw, 66px); right: clamp(22px, 6vw, 96px); }
+.paint-control p { color: rgba(232, 244, 246, .6); margin: 0 0 11px; }
+.paint-swatches { display: flex; gap: 8px; }
+.paint-swatch { background: var(--swatch); border: 1px solid rgba(255, 255, 255, .26); border-radius: 50%; cursor: pointer; height: 18px; padding: 0; position: relative; width: 18px; }
+.paint-swatch::after { border: 1px solid #67d8ff; border-radius: inherit; content: ""; inset: -5px; opacity: 0; position: absolute; transition: opacity .2s ease; }
+.paint-swatch.is-active::after, .paint-swatch:hover::after { opacity: 1; }
+.paint-swatch:nth-child(1) { --swatch: #b6212d; }
+.paint-swatch:nth-child(2) { --swatch: #f0f1ec; }
+.paint-swatch:nth-child(3) { --swatch: #2648b8; }
+.paint-swatch:nth-child(4) { --swatch: #5d6874; }
+.paint-swatch:nth-child(5) { --swatch: #c9863a; }
+.paint-swatch:nth-child(6) { --swatch: #257c66; }
+.paint-swatch:nth-child(7) { --swatch: #703aa9; }
+
+.model-credit { bottom: 30px; color: rgba(232, 244, 246, .45); left: clamp(22px, 4vw, 64px); text-decoration: none; }
+.model-credit:hover, .model-credit:focus-visible { color: #f4f7f7; }
+
+@keyframes loader-pulse { 50% { box-shadow: 0 0 18px 6px rgba(103, 216, 255, .75); transform: scale(1.35); } }
+
+@media (max-width: 700px) {
+  .topbar p { display: none; }
+  .hero-copy { top: 18%; }
+  h1 { font-size: clamp(48px, 15vw, 72px); }
+  .drive-control { bottom: 110px; left: 22px; }
+  .speed-button { padding: 8px 9px; }
+  .paint-control { bottom: 58px; left: 22px; right: auto; }
+  .model-credit { bottom: 25px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; scroll-behavior: auto !important; transition-duration: .001ms !important; }
+}

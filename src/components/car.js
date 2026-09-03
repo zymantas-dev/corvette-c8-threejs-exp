@@ -12,7 +12,7 @@ export const loadCar = () =>
     loader.load(
       // "models/chevrolet-c7/scene.gltf",
       // "models/mclaren_p1/scene.gltf",
-      "models/2019_chevrolet_corvette_c8_stingray/scene.gltf",
+      "/models/2019_chevrolet_corvette_c8_stingray/scene.gltf",
       (gltf) => {
         gltf.scene.scale.set(0.85, 0.85, 0.85)
         // gltf.scene.scale.set(0.005, 0.005, 0.005)
