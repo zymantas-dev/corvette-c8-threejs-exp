@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+  <title>Chevrolet Corvette C8 Visualization</title>
+</head>
+<body>
+  <div class="loader">Loading ...</div>
+  <div class="cursor outer"></div>
+  <div class="cursor inner"></div>
+  <div class="canvas-container">
+    <canvas class="webgl"></canvas>
+    <div class="credits-container">
+      <a href="https://sketchfab.com/3d-models/2019-chevrolet-corvette-c8-stingray-790c40ccff6843eab0b7b4bd18421ff8"><code>Chevrolet Corvette C8 model used from Sketchfab</code></a>
+    </div>
+    <div class="colors-container">
+      <button id="colorPicker">PICK COLOR</button>
+      <button style="background-color: #520804;" data-color="#520804"></button>
+      <button style="background-color: #06D6A0;" data-color="#06D6A0"></button>
+      <button style="background-color: #00A6FB;" data-color="#00A6FB"></button>
+      <button style="background-color: #B7245C;" data-color="#B7245C"></button>
+      <button style="background-color: #4C2C72;" data-color="#4C2C72"></button>
+      <button style="background-color: #031927;" data-color="#031927"></button>
+      <button style="background-color: #ffffff;" data-color="#ffffff"></button>
+    </div>
+  </div>
+  <script type="module" src="/src/index.js"></script>
+</body>
+</html>

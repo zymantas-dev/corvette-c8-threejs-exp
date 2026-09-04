@@ -3,7 +3,7 @@ import { scene } from '../canvas/scene'
 
 const title = new Text()
 
-const font = "fonts/Ubuntu/Ubuntu-Bold.ttf"
+const font = "/fonts/Ubuntu/Ubuntu-Bold.ttf"
 
 title.font = font
 title.text = "CORVETTE C8"
