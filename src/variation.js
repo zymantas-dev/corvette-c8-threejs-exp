@@ -1,6 +1,7 @@
 import "./variation.css"
 import * as THREE from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js"
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js"
 import { Reflector } from "three/examples/jsm/objects/Reflector"
@@ -17,6 +18,21 @@ scene.fog = new THREE.FogExp2(0x010308, 0.06)
 
 const camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.1, 140)
 camera.position.set(5.9, 2.25, 7.6)
+
+const webglAvailable = (() => {
+  try {
+    const probe = document.createElement("canvas")
+    return Boolean(probe.getContext("webgl2") || probe.getContext("webgl"))
+  } catch {
+    return false
+  }
+})()
+
+if (!webglAvailable) {
+  loaderElement.classList.add("is-error")
+  loaderElement.textContent = "This experience needs WebGL. Enable hardware acceleration or try another browser."
+  throw new Error("WebGL is not available")
+}
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, canvas, powerPreference: "high-performance" })
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
@@ -151,6 +167,10 @@ for (let i = 0; i < 42; i++) {
 
 let carModel
 const carLoader = new GLTFLoader()
+// The model is Draco-compressed (13.5MB -> 3.2MB); decoders are served from static/draco.
+const dracoLoader = new DRACOLoader()
+dracoLoader.setDecoderPath("/draco/")
+carLoader.setDRACOLoader(dracoLoader)
 
 const paintCar = (color) => {
   if (!carModel) return
@@ -199,7 +219,7 @@ const setSpeed = (button) => {
 document.querySelectorAll(".speed-button").forEach((button) => button.addEventListener("click", () => setSpeed(button)))
 
 carLoader.load(
-  "/models/2019_chevrolet_corvette_c8_stingray/scene.gltf",
+  "/models/2019_chevrolet_corvette_c8_stingray/scene.glb",
   (gltf) => {
     carModel = gltf.scene
     carModel.scale.setScalar(0.87)
@@ -214,8 +234,13 @@ carLoader.load(
     paintCar(document.querySelector(".paint-swatch.is-active").dataset.color)
     scene.add(carModel)
     loaderElement.classList.add("is-hidden")
+    dracoLoader.dispose()
   },
-  undefined,
+  (event) => {
+    if (event.lengthComputable) {
+      loaderElement.textContent = `Loading the C8 ${Math.round((event.loaded / event.total) * 100)}%`
+    }
+  },
   (error) => {
     console.error("Unable to load the C8", error)
     loaderElement.textContent = "Unable to load the C8"

@@ -4,15 +4,15 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
 
 const loader = new GLTFLoader()
 const dracoLoader = new DRACOLoader()
-dracoLoader.setDecoderPath("/examples/js/libs/draco/")
+dracoLoader.setDecoderPath("/draco/")
 loader.setDRACOLoader(dracoLoader)
 
 export const loadCar = () =>
   new Promise((resolve, reject) => {
     loader.load(
-      // "models/chevrolet-c7/scene.gltf",
-      // "models/mclaren_p1/scene.gltf",
-      "/models/2019_chevrolet_corvette_c8_stingray/scene.gltf",
+      // "models/chevrolet-c7/scene.glb",
+      // "models/mclaren_p1/scene.glb",
+      "/models/2019_chevrolet_corvette_c8_stingray/scene.glb",
       (gltf) => {
         gltf.scene.scale.set(0.85, 0.85, 0.85)
         // gltf.scene.scale.set(0.005, 0.005, 0.005)

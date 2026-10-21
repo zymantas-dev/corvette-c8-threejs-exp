@@ -1,7 +1,7 @@
 {
-  "name": "vanilla-cargo-deck-builder",
+  "name": "corvette-c8-threejs-exp",
   "version": "0.0.1",
-  "description": "",
+  "description": "A Corvette C8 driving through a light field, built with three.js",
   "main": "index.js",
   "keywords": [],
   "author": "Žymantas Venclauskas",
