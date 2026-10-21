@@ -127,3 +127,5 @@ h1 { font-size: clamp(44px, 5.6vw, 92px); letter-spacing: -.07em; line-height: .
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; scroll-behavior: auto !important; transition-duration: .001ms !important; }
 }
+.loader.is-error { letter-spacing: .08em; text-align: center; padding: 0 24px; }
+.loader.is-error::after { display: none; }
